@@ -1,4 +1,4 @@
-let cards = [];
+let cards;
 let openedCard;
 let score;
 let remainPairs;
@@ -15,6 +15,8 @@ function victory(){
 function purgeCards(){
     $("#" + first).css("opacity", 0);
     $("#" + second).css("opacity", 0);
+    cards[first].done = true;
+    cards[second].done = true;
     openedCard = -1;
     if (remainPairs === 0) {
         victory();
@@ -30,7 +32,7 @@ function hideCards(){
 function hideField(){
     $(".card").attr("src", "cards/Рубашка.png");
     $(".card").click(function(){
-        if (openedCard === -2) {
+        if (openedCard === -2 || cards[Number(this.id)].done) {
             return;
         }
         if (openedCard === -1) {
@@ -60,9 +62,10 @@ function hideField(){
 }
 
 function startGame(){
-    var allCards = [2, 3, 4, 5, 6, 7, 8, 9, 0, "A", "J", "K", "Q"]
+    let allCards = [2, 3, 4, 5, 6, 7, 8, 9, 0, "A", "J", "K", "Q"]
         .reduce((res, cur) => res
             .concat(["C", "D", "H", "S"].map((a) => cur + a)), []);
+    cards = [];
     for (let i = 0; i < 9; i++){
         var cardNumber = Math.floor(Math.random() * allCards.length);
         cards.push( {number: allCards[cardNumber], done: false} );

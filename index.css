@@ -1,0 +1,109 @@
+body
+{
+    background-color: black;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.table
+{
+    background: radial-gradient(rgb(32, 121, 53), rgb(38, 82, 48));
+    width: 100%;
+    height: 70vh;
+    margin-top: 15vh;
+}
+
+.end-window
+{
+    display: none;
+}
+
+.start-image,
+.end-image
+{
+    padding-left: 30vw;
+    padding-top: 9vh;
+    width: 40vw;
+}
+
+.name-of-game,
+.congrats
+{
+    width: 100%;
+    text-align: center;
+    padding-top: 3.3%;
+}
+
+.name-of-game span,
+.congrats span
+{
+    opacity: 0.85;
+    font-family: OpenSans-Bold;
+    font-size: 28px;
+    color: #FFFFFF;
+    letter-spacing: 0.2px;
+}
+
+.start-button-box,
+.end-button-box
+{
+    width: 100%;
+    text-align: center;
+    padding-top: 2%;
+}
+
+#start-game,
+#start-again
+{
+    display: inline-block;
+    opacity: 0.85;
+    background: #FFFFFF;
+    border-radius: 4px;
+    margin-left: auto;
+    box-shadow: none;
+}
+
+.start-game div
+{
+    font-family: OpenSans-Bold;
+    font-size: 16px;
+    color: #1C7430;
+    letter-spacing: 0;
+    margin: 8%;
+    font-weight: bold;
+}
+
+.card-container
+{
+    padding: 20%;
+    padding-top: 5%;
+    display: none;
+}
+
+.game-info
+{
+    padding-left: 20%;
+    padding-right: 25%;
+    display: none;
+    opacity: 0.8;
+    font-family: OpenSans-Bold;
+    font-size: 2em;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.card
+{
+    width: 15%;
+    border-radius: 5px;
+}
+
+#score
+{
+    float: right;
+}
+
+#new-game
+{
+    float: left;
+}

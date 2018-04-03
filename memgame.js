@@ -15,6 +15,8 @@ function victory(){
 function purgeCards(){
     $("#" + first).css("opacity", 0);
     $("#" + second).css("opacity", 0);
+    $("#" + first).removeAttr("data-tid");
+    $("#" + second).removeAttr("data-tid");
     cards[first].done = true;
     cards[second].done = true;
     openedCard = -1;
@@ -26,11 +28,14 @@ function purgeCards(){
 function hideCards(){
     $("#" + first).attr("src", "cards/Рубашка.png");
     $("#" + second).attr("src", "cards/Рубашка.png");
+    $("#" + first).attr("data-tid", "Card");
+    $("#" + second).attr("data-tid", "Card");
     openedCard = -1;
 }
 
 function hideField(){
     $(".card").attr("src", "cards/Рубашка.png");
+    $(".card").attr("data-tid", "Card");
     $(".card").click(function(){
         if (openedCard === -2 || cards[Number(this.id)].done) {
             return;
@@ -38,6 +43,7 @@ function hideField(){
         if (openedCard === -1) {
             openedCard = Number(this.id);
             $("#" + this.id).attr("src", "cards/" + cards[openedCard].number + ".png");
+            $("#" + this.id).attr("data-tid", "Card-flipped");
         } else {
             first = openedCard;
             second = Number(this.id);
@@ -46,9 +52,10 @@ function hideField(){
             }
             openedCard = -2;
             $("#" + this.id).attr("src", "cards/" + cards[second].number + ".png");
+            $("#" + this.id).attr("data-tid", "Card-flipped");
             if (cards[first].number === cards[second].number) {
-                $("#" + this.id).click(function(){});
-                $("#" + first).click(function(){});
+                $("#" + this.id).unbind("click");
+                $("#" + first).unbind("click");
                 remainPairs--;
                 score += 42 * remainPairs;
                 setTimeout(purgeCards, 1000);
@@ -72,14 +79,17 @@ function startGame(){
         cards.push( {number: allCards[cardNumber], done: false} );
         allCards.splice(cardNumber, 1);
     }
-    cards.sort((a, b) => Math.random() - 0.5);
+    for (let i = 0; i < 5; i++){
+        cards.sort((a, b) => Math.random() - 0.5);
+    }
     for (let i = 0; i < 18; i++) {
         let tableCard = "#" + i;
         $(tableCard).attr("src", "cards/" + cards[i].number + ".png");
         $(tableCard).css("opacity", 1);
     }
-    $(".card").click(function(){});
+    $(".card").unbind("click");
     $(".card-container").css("display", "block");
+    $(".card").attr("data-tid", "Card-flipped");
     $(".game-info").css("display", "block");
     openedCard = -1;
     score = 0;
@@ -97,7 +107,15 @@ $("#new-game").click(function(){
     startGame();
 })
 
- $("#start-again").click(function(){
+$("#start-again").click(function(){
     $(".end-window").css("display", "none");
     startGame();
 })
+
+if ($(document).width() > 1000) {
+    $(".start-image").attr("src", "assets/StartGame@2x.png");
+    $(".end-image").attr("src", "assets/Group 2@2x.png");
+} else {
+    $(".start-image").attr("src", "assets/StartGame.png");
+    $(".end-image").attr("src", "assets/Group 2.png");
+}

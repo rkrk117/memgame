@@ -6,32 +6,32 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <script type="text/javascript" src="jquery.js"></script>
 </head>
-<body>
-    <div class="table">
-        <img src="assets/StartGame.png" class="start-image start-window">
+<body data-tid="App">
+    <div class="table" data-tid="Deck">
+        <img class="start-image start-window">
         <div class="name-of-game start-window">
             <span>MEMORY GAME</span>
         </div>
         <div class="start-button-box start-window">
-            <button id="start-game">
+            <button id="start-game"  data-tid="NewGame-startGame">
                 <div>Начать игру</div>
             </button>
         </div>
 
-        <img src="assets/Group 2.png" class="end-image end-window">
+        <img class="end-image end-window">
         <div class="congrats end-window">
             <span>Поздравляем</span><br>
             <span id="final-score"></span>
         </div>
         <div class="end-button-box end-window">
-            <button id="start-again">
+            <button id="start-again" data-tid="EndGame-retryGame">
                 <div>Еще раз</div>
             </button>
         </div>
 
         <div class="game-info">
-            <div id="score"></div>
-            <div id="new-game">Начать заново</div>
+            <div id="score" data-tid="Menu-scores"></div>
+            <div id="new-game" data-tid="Menu-newGame">Начать заново</div>
         </div>
         <div class="card-container">
             <img class="card" id="0"></img>
